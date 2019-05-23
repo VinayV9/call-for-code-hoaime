@@ -1,0 +1,13 @@
+<mat-card *ngIf="profile" class="profile">
+  <div class="user-image">
+      <img [src]="profile.avtar" alt="user">
+  </div>
+  <div class="user-details">
+      <h4> Name: {{profile.username}} </h4>
+
+      <h4> Job: {{profile.company}} </h4>
+    
+      <h4>package: {{profile.package}} LPA</h4>
+  </div>
+  
+</mat-card>
