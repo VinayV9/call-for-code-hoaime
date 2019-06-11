@@ -9,11 +9,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MaterialdesignModule } from './modules/materialdesign/materialdesign.module';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider } from 'angularx-social-login';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { FeedComponent } from './components/feed/feed.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { CreateComponent } from './components/create/create.component';
 import { AuthGuard } from './gaurds/auth.gaurd';
 import { SharedServiceService } from './services/shared-service/shared-service.service';
+import { DisasterComponent } from './components/disaster/disaster.component';
+import {WebcamModule} from 'ngx-webcam';
+import { MapAnalysisComponent } from './components/map-analysis/map-analysis.component';
+// import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 
 const config = new AuthServiceConfig([
   {
@@ -38,9 +39,8 @@ export function provideConfig() {
   declarations: [
     AppComponent,
     NavbarComponent,
-    FeedComponent,
-    ProfileComponent,
-    CreateComponent 
+    DisasterComponent,
+    MapAnalysisComponent 
   ],
   imports: [
     BrowserModule,
@@ -50,6 +50,11 @@ export function provideConfig() {
     FormsModule,
     HttpClientModule,
     SocialLoginModule,
+    WebcamModule,
+    // NgxMapboxGLModule.withConfig({
+    //   accessToken: 'pk.eyJ1IjoidmluYXl2OSIsImEiOiJjaml6ajh4YnQwNjhzM3dwMWRmdmk2eW51In0.gVEIvhU0lN2i8l-Hc2g32g', // Optionnal, can also be set per map (accessToken input of mgl-map)
+    //   geocoderAccessToken: 'pk.eyJ1IjoidmluYXl2OSIsImEiOiJjaml6ajh4YnQwNjhzM3dwMWRmdmk2eW51In0.gVEIvhU0lN2i8l-Hc2g32g' // Optionnal, specify if different from the map access token, can also be set per mgl-geocoder (accessToken input of mgl-geocoder)
+    // })
   ],
   providers: [
     {

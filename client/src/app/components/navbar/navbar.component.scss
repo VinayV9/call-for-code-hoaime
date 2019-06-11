@@ -1,5 +1,6 @@
 .example-spacer {
     flex: 1 1 auto;
+    padding: 5px;
 }
 .avatar {
     vertical-align: middle;
@@ -10,4 +11,29 @@
 }
 div{
     padding: 5px;
+}
+span{
+    padding: 5px;
+}
+.toolbar{
+    width:100%;
+    height:8vh;
+    top:0;
+    position:fixed;
+    z-index: 2;
+}
+.example-sidenav-container {
+    width: 100%;
+    min-height: 92vh;
+    height: auto;
+    margin-top: 8vh;
+}
+.side-nav{
+    width:200px;
+}
+.mat-drawer-content {
+    overflow: hidden;
+}
+.mat-drawer-shown {
+    background-color: rgba(0,0,0,.22);
 }
