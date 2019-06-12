@@ -31,8 +31,8 @@ export class SharedServiceService {
     return this.http.get(`${this.baseUrl}/api/user/profile/${id}`, httpOptions)
   }
 
-  getPosts() {
-    return this.http.get(`${this.baseUrl}/api/posts`, httpOptions)
+  getDisasters() {
+    return this.http.get(`${this.baseUrl}/api/disasters`, httpOptions)
   }
 
   setProfile(data) {
@@ -56,52 +56,23 @@ export class SharedServiceService {
     return localStorage.getItem('token');
   }
 
-  public uploadImage(image: File, description: string): any {
+  public uploadImage(image: File, log: string, lat: string): any {
     const formData = new FormData();
     console.log(image);
     formData.append('image', image);
-    formData.append('description', description)
-
-    return this.http.post(`${this.baseUrl}/api/user/post`, formData);
+    formData.append('log', log);
+    formData.append('lat', lat);
+    return this.http.post(`${this.baseUrl}/api/user/disaster`, formData);
   }
 
-  getMarkers() {
+  //pollution api
+  getPollutionDetails(lat: number, log: number){
+    let apikey: string = "n6tc2tfof3636aa7q7ob95nfqb";
+    return this.http.get(`http://api.airpollutionapi.com/1.0/aqi?lat=${lat}&lon=${log}&APPID=${apikey}`);
+  }
 
-
-    const geoJson = [{
-
-
-      'type': 'Feature',
-
-
-      'geometry': {
-
-
-        'type': 'Point',
-
-
-        'coordinates': ['80.20929129999999', '13.0569951']
-
-
-      },
-
-
-      'properties': {
-
-
-        'message': 'Chennai'
-      }
-    }, {
-      'type': 'Feature',
-      'geometry': {
-        'type': 'Point',
-        'coordinates': ['77.350048', '12.953847']
-      },
-      'properties': {
-        'message': 'bangulare'
-      }
-    }];
-    return geoJson;
+  getImageVisualizationDetails(lat: number, log: number){
+    return this.http.post(`${this.baseUrl}/api/analysis/disaster`, {lat, log} );
   }
 
 }

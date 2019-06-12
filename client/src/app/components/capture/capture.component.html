@@ -1,0 +1,11 @@
+<div class="box">
+  <mat-card>
+  <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+    [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions"
+    [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)" (initError)="handleInitError($event)"></webcam>
+  </mat-card>
+<mat-card  *ngIf="webcamImage">
+  <img class="image" [src]="webcamImage.imageAsDataUrl" />
+</mat-card>
+</div>
+<button mat-raised-button color="primary" (click)="triggerSnapshot()"><mat-icon>camera_enhance</mat-icon>Take a Snapshot</button>

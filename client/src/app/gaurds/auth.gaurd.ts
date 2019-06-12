@@ -11,7 +11,7 @@ export class AuthGuard implements HttpInterceptor {
   ){}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-   console.log("hello"+ this.sharedServiceService.getToken());
+  //  console.log("hello"+ this.sharedServiceService.getToken());
    request = request.clone({
       setHeaders: {
         Authorization: this.sharedServiceService.getToken() || ''

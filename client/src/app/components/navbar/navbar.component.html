@@ -1,35 +1,38 @@
-<mat-toolbar color="warn">
+<mat-toolbar color="primary">
   <button mat-icon-button>
     <i class="material-icons" (click)="drawer.toggle()">menu</i>
-  <button>
-  <span>Call for Code Hoime</span>
-  <span class="example-spacer"></span>
-  <button mat-icon-button (click)="signInWithGoogle()" *ngIf="!user">
-    <img src="assets/signIn.svg" alt="sign in with google">
   </button>
-  <button mat-icon-button (click)="signOut()" *ngIf="user">
-    <i class="material-icons">
-      exit_to_app
-    </i>
-  </button>
-  <div *ngIf="user">
-    <span>{{user.username}}</span>
-    <img src="{{user.avtar}}" alt="Avatar" class="avatar">
-  </div>
+      <span>Call for Code Hoaime</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button (click)="signInWithGoogle()" *ngIf="!user">
+        <img src="assets/signIn.svg" alt="sign in with google">
+      </button>
+      <button mat-icon-button (click)="signOut()" *ngIf="user">
+        <i class="material-icons">
+          exit_to_app
+        </i>
+      </button>
+      <div *ngIf="user">
+        <span class="username">{{user.username}}</span>
+        <!-- <img src="{{user.avtar}}" alt="Avatar" class="avatar"> -->
+        <i class="material-icons">
+            person
+        </i>
+      </div>
 </mat-toolbar>
-
 <mat-sidenav-container class="example-sidenav-container">
   <mat-sidenav #drawer class="side-nav">
     <mat-nav-list>
-      <a mat-list-item routerLink=".">Profile</a>
-      <a mat-list-item routerLink="servers">Servers Analysis</a>
-      <a mat-list-item routerLink="client">Clients</a>
+      <a mat-list-item routerLink="/profile">Profile</a>
+      <a mat-list-item routerLink="/disaster">Disaster</a>
+      <a mat-list-item routerLink="/map">Maps</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
 <!-- <mat-tab-group mat-stretch-tabs color="warn">
   <mat-tab label="Disaster">
     <app-disaster></app-disaster>

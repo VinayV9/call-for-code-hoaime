@@ -1,3 +1,19 @@
-<p>
-  map-analysis works!
-</p>
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-atom">
+ <p style="font-size: 20px; color: white">Analyzing....</p>
+</ngx-spinner>
+<agm-map [latitude]="lat" [longitude]="log" (mapClick)="mapClicked($event.coords)" [zoom]="zoom" [disableDefaultUI]="false">
+  <agm-marker *ngIf="!showCircle" [latitude]="lat" [longitude]="log"></agm-marker>
+  <agm-circle *ngIf="showCircle"[latitude]="lat" [longitude]="log" 
+      [radius]="1000"
+      [fillColor]="'red'"
+      [circleDraggable]="false"
+      [editable]="true">
+  </agm-circle>
+</agm-map>
+<button mat-raised-button color="primary" (click)="analyze()"><mat-icon>timeline</mat-icon>Analyze</button>
+
+<h2>{{ overAllScore }}</h2>

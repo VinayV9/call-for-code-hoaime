@@ -14,7 +14,12 @@ import { SharedServiceService } from './services/shared-service/shared-service.s
 import { DisasterComponent } from './components/disaster/disaster.component';
 import {WebcamModule} from 'ngx-webcam';
 import { MapAnalysisComponent } from './components/map-analysis/map-analysis.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { AppSpinnerComponent } from './components/app-spinner/app-spinner.component';
 // import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { AgmCoreModule } from '@agm/core';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { CaptureComponent } from './components/capture/capture.component';
 
 const config = new AuthServiceConfig([
   {
@@ -40,7 +45,13 @@ export function provideConfig() {
     AppComponent,
     NavbarComponent,
     DisasterComponent,
-    MapAnalysisComponent 
+    MapAnalysisComponent,
+    ProfileComponent,
+    AppSpinnerComponent,
+    CaptureComponent, 
+  ],
+  entryComponents: [
+    CaptureComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +61,11 @@ export function provideConfig() {
     FormsModule,
     HttpClientModule,
     SocialLoginModule,
+    NgxSpinnerModule,
     WebcamModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC9wo1bBzxf1Y3_A5GcmrOi9pv_AdVQDuY' //'AIzaSyAR8e0QnN7M7JWiPjbdN9BiHBuUy6zmtVM' // kishan api key 
+    })
     // NgxMapboxGLModule.withConfig({
     //   accessToken: 'pk.eyJ1IjoidmluYXl2OSIsImEiOiJjaml6ajh4YnQwNjhzM3dwMWRmdmk2eW51In0.gVEIvhU0lN2i8l-Hc2g32g', // Optionnal, can also be set per map (accessToken input of mgl-map)
     //   geocoderAccessToken: 'pk.eyJ1IjoidmluYXl2OSIsImEiOiJjaml6ajh4YnQwNjhzM3dwMWRmdmk2eW51In0.gVEIvhU0lN2i8l-Hc2g32g' // Optionnal, specify if different from the map access token, can also be set per mgl-geocoder (accessToken input of mgl-geocoder)
