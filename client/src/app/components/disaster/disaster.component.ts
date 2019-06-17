@@ -108,6 +108,7 @@ export class DisasterComponent implements OnInit {
             u8arr[n] = bstr.charCodeAt(n);
          }
          let f = new File([u8arr], "capture.jpeg", {type: "image/jpeg"});
+         
          this.selectedFile.file = f;
          this.selectedFile.src = this.capturedImg.imageAsDataUrl;
          this.uploadImg = this._sanitizer.bypassSecurityTrustResourceUrl(this.selectedFile.src);

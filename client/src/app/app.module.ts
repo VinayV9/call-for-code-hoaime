@@ -21,6 +21,7 @@ import { AgmCoreModule } from '@agm/core';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CaptureComponent } from './components/capture/capture.component';
 
+
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,

@@ -29,7 +29,12 @@
           </button>
           <span>{{ disaster.class }} : </span>
           <span>{{ disaster.score*100 | number: '1.0-0' }}%</span>
-          <mat-progress-bar [value]="disaster.score*100" color="warn"></mat-progress-bar>
+          <div *ngIf="disaster.class == 'damaged'">
+              <mat-progress-bar [value]="disaster.score*100" color="warn"></mat-progress-bar>
+          </div>
+          <div *ngIf="disaster.class == 'normal'">
+            <mat-progress-bar [value]="disaster.score*100" color="primary"></mat-progress-bar>
+          </div>
         </mat-card-actions>
     </mat-card>
     

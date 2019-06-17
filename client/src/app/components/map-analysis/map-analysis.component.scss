@@ -1,6 +1,23 @@
 agm-map {
-    height: 400px;
+    height: 450px;
 }
 mat-icon{
     padding: 2px;
 } 
+.pollution{
+    width: 100%;
+    height: auto;
+}
+.upload-action{
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    button{
+        margin-top: 10px;
+    }
+}
+.feild{
+    color: lightgreen;
+}

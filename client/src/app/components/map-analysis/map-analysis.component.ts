@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SharedServiceService } from 'src/app/services/shared-service/shared-service.service';
-import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-map-analysis',
@@ -16,7 +15,9 @@ export class MapAnalysisComponent implements OnInit {
   showCircle: boolean= false;
   pollutionData: any;
   disasterData: any;
-
+  displayedColumns: string[] = ["NO2", "O3", "SO2", "PM10", "CO"];
+  dataSource : any;
+  
   constructor(
     private spinner: NgxSpinnerService,
     private sharedService: SharedServiceService
@@ -47,6 +48,7 @@ export class MapAnalysisComponent implements OnInit {
   networkScore: number = 0;
   foodAvailablityScore: number = 0;
   overAllScore: number = 0;
+  color = "red";
 
   analyze(){
     this.spinner.show();
@@ -63,14 +65,27 @@ export class MapAnalysisComponent implements OnInit {
             this.disasterData = data;
             this.disasterScore = this.calculateDisaster(data);
             this.overAllScore = this.calculateWeightedMean();
+            // 40 > green 40 - 55 > orange  55 > red
+            if(this.overAllScore <= 40){
+               this.color = "green";
+            }else if(this.overAllScore > 40 && this.overAllScore <= 55){
+              this.color = "orange";
+            }else{
+              this.color = "red";
+            }
+
             this.spinner.hide();
             this.showCircle = true;
           },
-          (err) => { console.log(err); }
+          (err) => { 
+            this.spinner.hide();
+            console.log(err);
+           }
         );
        },
-      (err) => { console.log(err);}
+      (err) => { this.spinner.hide(); console.log(err); }
     );
+    
   }
 
   // calculation

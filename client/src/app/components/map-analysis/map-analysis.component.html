@@ -8,12 +8,34 @@
 <agm-map [latitude]="lat" [longitude]="log" (mapClick)="mapClicked($event.coords)" [zoom]="zoom" [disableDefaultUI]="false">
   <agm-marker *ngIf="!showCircle" [latitude]="lat" [longitude]="log"></agm-marker>
   <agm-circle *ngIf="showCircle"[latitude]="lat" [longitude]="log" 
-      [radius]="1000"
-      [fillColor]="'red'"
+      [radius]="2000"
+      [fillColor]="color"
       [circleDraggable]="false"
       [editable]="true">
   </agm-circle>
 </agm-map>
-<button mat-raised-button color="primary" (click)="analyze()"><mat-icon>timeline</mat-icon>Analyze</button>
 
-<h2>{{ overAllScore }}</h2>
+
+<div style ="padding:10px;">
+    <button mat-raised-button color="primary" (click)="analyze()"><mat-icon>timeline</mat-icon>Analyze</button>
+    
+    <h2 style="padding-top:10px;">Overall Score: <span class="feild" *ngIf="overAllScore"> {{ overAllScore }} </span></h2>
+    <h2 style="padding-top:10px;">Air Quality Index: <span class="feild" *ngIf="pollutionScore">{{ pollutionScore }}</span></h2>
+    <div style="padding:10px" *ngIf="overAllScore">
+        <mat-progress-bar [value]="overAllScore" color="primary"></mat-progress-bar>
+    </div>
+</div>
+
+<!-- <mat-card-content class="content">
+    <canvas baseChart width="1000" height="600" [datasets]="barChartData" [labels]="barChartLabels"
+        [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend"
+        [chartType]="barChartType">
+    </canvas>
+</mat-card-content> -->
+
+<img src="assets/images/pollution.png" alt="" class="pollution">
+<div class="upload-action">
+    <button mat-raised-button color="primary" > Link My Medical Record</button>
+    <button mat-raised-button color="primary" >Link My Social Media</button>
+</div>
+

@@ -89,21 +89,21 @@ disasterSvc.getPosts = (req, res) => {
 disasterSvc.disasterAnalysis = (req, res) => {
   let lat = req.body.lat;
   let log = req.body.log;
-  let radius = Math.round(2/3963.2)
+  let radius = 2000; //Math.round(2000/3963.2)
   let startTime = Date.now(Date.now() - 24*60*60*1000); 
   let endTime = Date.now();
   Disaster.find({
     $and : [ { $or : [ {lat: {$lte : lat + radius}}, {lat: {$gte : lat - radius}} ] } ,
-             { $or : [ {log: {$lte : log + radius}}, {log: {$gte : log - radius}} ] },
-             { $or : [ {time: {$lte: endTime}}, {time: {$gte: startTime}}]}
-           ]
-    })
-    .then((disasters) => {
-      res.status(200).send(disasters)
-    })
-    .catch((err) => {
-      res.status(404).send("error fetching analysis")
-    })
+    { $or : [ {log: {$lte : log + radius}}, {log: {$gte : log - radius}} ] },
+    { $or : [ {time: {$lte: endTime}}, {time: {$gte: startTime}}]}
+  ]
+  })
+  .then((disasters) => {
+  res.status(200).send(disasters)
+  })
+  .catch((err) => {
+  res.status(404).send("error fetching analysis")
+  })
 }
 
 module.exports = disasterSvc
